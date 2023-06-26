@@ -1,0 +1,134 @@
+{% extends 'index.html' %}
+
+
+{% block title %}About Us{% endblock title %}
+
+{% block home %}{% endblock home %}
+{% block about %}active{% endblock about %}
+
+{% block body-out %}
+
+{% load static %}
+		
+
+	<!-- ===== PAGE HEADER ===== -->
+	<header class="page-header" style="background-image: url({% static 'images/bg_link3.jpg' %})">
+		<div class="page-header-inner">
+			<div class="container">
+
+				<!-- ===== BREADCRUMB ===== -->
+				<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+					<li itemprop="itemListElement"><a href="/">Home</a></li>
+					<li itemprop="itemListElement"><a href="/about-us">About Us</a></li>
+				</ol>
+
+				<!-- ===== PAGE HEADER CONTENT ===== -->
+				<div class="page-header-content text-center">
+					<h2>About Us</h2>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	
+	<!-- ===== ABOUT US ===== -->
+	<section id="about-us" class="section-negative">
+		<div class="container">
+			
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default text-center">Behind the mic...</h2>
+			
+			<div class="row mb-30">
+				
+				<!-- ===== TEAM CARD ===== -->
+				{% comment %} <div class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-12 mb-40">
+					<div class="team-card">
+						<figure class="team-card-image"><img src="assets/img/team/team-1.jpg" alt="John Doe" title="John Doe" /></figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">John Doe</h2>
+							<p class="team-card-job">Main Caster / Web Developer</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora, libero in fugiat, quisquam molestiae.</p>
+							<ul class="team-card-social">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-soundcloud"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-link"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<!-- ===== TEAM CARD ===== -->
+				<div class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-12 mb-40">
+					<div class="team-card">
+						<figure class="team-card-image"><img src="assets/img/team/team-2.jpg" alt="Jana Doe" title="Jana Doe" /></figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">Jana Doe</h2>
+							<p class="team-card-job">Main Caster / Designer</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora.</p>
+							<ul class="team-card-social">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-link"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<!-- ===== TEAM CARD ===== -->
+				<div class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-12 mb-40">
+					<div class="team-card">
+						<figure class="team-card-image"><img src="assets/img/team/team-3.jpg" alt="Joe Blow" title="Joe Blow" /></figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">Joe Blow</h2>
+							<p class="team-card-job">Supporter / Actor</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora, libero in fugiat, quisquam molestiae.</p>
+							<ul class="team-card-social">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-link"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div> {% endcomment %}
+				
+			</div>
+			
+		</div>
+	</section>
+
+	{% endblock body-out %}
+	{% block body %}
+
+	<!-- ===== NEWSLETTER ===== -->
+	<section class="section-positive text-center">
+		<div class="container">
+			
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Never miss an episode</h2>
+			<p class="section-description">Form with MailChimp ready, just change the action! Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />  Vel modi rem laudantium, alias minus temporibus nihil reiciendis vero.</p>
+			
+			<!-- ===== FORM NEWSLETTER ===== -->
+			<form action="" method="POST" target="_blank" class="form-newsletter validate">
+				<fieldset class="row">
+					<div class="col-md-9 nopadding">
+						<input type="email" name="EMAIL" class="form-control form-negative" id="email-newsletter" placeholder="Your email" required />
+					</div>
+					<div class="col-md-3 nopadding">
+						<button class="btn btn-success btn-lg btn-block" type="submit"><i class="fa fa-paper-plane"></i></button>
+					</div>
+				</fieldset>
+			</form>
+
+		</div>
+	</section>
+	
+	
+	
+
+{% endblock body %}

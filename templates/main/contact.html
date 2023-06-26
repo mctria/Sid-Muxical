@@ -1,0 +1,96 @@
+{% extends 'index.html' %}		
+
+{% block title %}Contact{% endblock title %}
+
+{% block home %}{% endblock home %}
+{% block contact %}active{% endblock contact %}
+
+
+{% block body %}
+
+{% load static %}
+
+	<!-- ===== PAGE HEADER ===== -->
+	<header class="page-header" style="background-image: url({% static 'images/bg_link5.jpg' %})">
+		<div class="page-header-inner">
+			<div class="container">
+
+				<!-- ===== BREADCRUMB ===== -->
+				<ol class="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
+					<li itemprop="itemListElement"><a href="/">Home</a></li>
+					<li itemprop="itemListElement"><a href="/contact">Contact</a></li>
+				</ol>
+
+				<!-- ===== PAGE HEADER CONTENT ===== -->
+				<div class="page-header-content text-center">
+					<h2>Contact Info</h2>
+				</div>
+
+			</div>
+		</div>
+	</header>
+	
+	<!-- ===== SECTION ===== -->
+	<section class="section-negative">
+		<div class="container">
+			
+			<!-- ===== PAGE CONTENT ===== -->
+			<div class="page-content mt-60">
+			
+				<!-- ===== PAGE TITLE & DESCRIPTION ===== -->
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center">
+						<h2 class="title-default mb-10">Get in touch</h2>
+						<p class="page-description mb-70">If You have any Issue contact us.</p>
+					</div>
+				</div>
+				
+				<!-- ===== FORM CONTACT ===== -->
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2">
+						<form action="" method="POST" id="form-contact" class="form-contact form-validate">
+							<fieldset>
+								<div class="mb-20">
+									<label for="name" class="label-control">Name* :</label>
+									<input type="text" name="name" class="form-control" id="name" required />
+								</div>
+								<div class="mb-20">
+									<label for="email" class="label-control">Email* :</label>
+									<input type="email" name="email" class="form-control" id="email" required />
+								</div>
+								<div class="mb-20">
+									<label for="subject" class="label-control">Subject* :</label>
+									<input type="text" name="subject" class="form-control" id="subject" required />
+								</div>
+								<div class="mb-20">
+									<label for="message" class="label-control">Message* :</label>
+									<textarea name="message" id="message" rows="6" class="form-control" required></textarea>
+								</div>
+								<div class="mb-20 text-right">
+									<input type="submit" class="btn btn-success btn-lg" value="Submit" />
+								</div>
+								<div class="form-callback success">
+									<p>Success! Thank you for contact us.</p>
+								</div>
+								<div class="form-callback error">
+									<p>Error! Something went wrong.</p>
+								</div>
+							</fieldset>
+						</form>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</section>
+	
+	<!-- ===== MAP EMBED ===== -->
+	{% comment %} <div class="map" id="map">
+		<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6508936.152256409!2d-123.7672035544811!3d37.195681156014146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornia%2C+USA!5e0!3m2!1spt-BR!2sbr!4v1459617847784" style="border:0" allowfullscreen></iframe>
+	</div>
+	 {% endcomment %}
+
+	 
+	
+	
+{% endblock body %}

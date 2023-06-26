@@ -1,0 +1,451 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+
+		<!-- =================================== -->
+		<!-- 		  COMPATIBILITY 			 -->
+		<!-- =================================== -->
+		
+		<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+
+		<!-- =================================== -->
+		<!-- 			  TITLE 			 	 -->
+		<!-- =================================== -->
+
+		<title> {% block title %} HOME | Music World {% endblock title %} </title>
+
+		<!-- =================================== -->
+		<!-- 			MORDERNIZR 			 	 -->
+		<!-- =================================== -->
+
+		<script src="{% static 'js/modernizr.js' %}"></script>
+		
+		<!-- =================================== -->
+		<!-- 			  STYLES 				 -->
+		<!-- =================================== -->
+		
+		<!-- BOOTSTRAP MIN -->
+		<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" />
+		{% comment %} <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> {% endcomment %}
+		
+		<!-- MEDIA ELEMENT -->
+		<link href="{% static 'css/mediaelementplayer.min.css' %}" rel="stylesheet" />
+		
+		<!-- MAGNIFIC POPUP CSS -->
+		<link href="{% static 'css/magnific-popup.css' %}" rel="stylesheet" />
+		
+		<!-- THEME CSS -->
+		<link href="{% static 'css/style.css' %}" rel="stylesheet" />
+		
+		<!-- GOOGLE FONTS -->
+		<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+		
+		<!-- FONT AWESOME -->
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+		
+		<!-- =================================== -->
+		<!-- 		 	THEME COLOR 			 -->
+		<!-- =================================== -->
+		
+		<meta name="theme-color" content="#fff" />
+		
+		<!-- =================================== -->
+		<!-- 			CONDITIONAL 			 -->
+		<!-- =================================== -->
+		
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+		<!-- =================================== -->
+		<!-- 			 VIEWPORT 				 -->
+		<!-- =================================== -->
+
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" />
+
+		<!-- =================================== -->
+		<!-- 			  AUTHOR 				 -->
+		<!-- =================================== -->
+
+		<meta name="author" content="reidark" />
+		<meta name="reply-to" content="support@reidark.com.br" />
+		<meta name="DC.publisher" content="reidark" />
+		<meta name="generator" content="Brackets" />
+
+		<!-- =================================== -->
+		<!-- 			 CONTENT 				 -->
+		<!-- =================================== -->
+
+		<meta name="keywords" content="soundcast, html5 template, creative template, themeforest, podcast template, podcast theme" />
+		<meta name="description" content="A clean, lightweight and responsive podcast theme." />
+
+		<!-- =================================== -->
+		<!-- 			 ROBOTS 				 -->
+		<!-- =================================== -->
+
+		<meta name="GOOGLEBOT" content="INDEX, FOLLOW" />
+		<meta name="robots" content="index, follow">
+		<meta name="msnbot" content="NOODP" />
+
+		<!-- =================================== -->
+		<!-- 			 FACEBOOK 				 -->
+		<!-- =================================== -->
+
+		<meta property="og:locale" content="en" />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content="Soundcast" />
+		<meta property="og:description" content="Podcast Responsive Theme" />
+		<meta property="og:url" content="http://www.reidark.com.br/soundcast" />
+		<meta property="og:site_name" content="Soundcast" />
+		<meta property="og:image" content="http://www.reidark.com.br/soundcast/assets/img/facebook-og.jpg" />
+
+		<!-- =================================== -->
+		<!-- 			  TWITTER 				 -->
+		<!-- =================================== -->
+
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="http://www.reidark.com.br/soundcast" />
+		<meta name="twitter:creator" content="@reidarking" />
+		<meta name="twitter:title" content="Soundcast" />
+		<meta name="twitter:description" content="Podcast Responsive Theme" />
+		<meta name="twitter:domain" content="reidark" />
+		<meta name="twitter:image" content="http://www.reidark.com.br/soundcast/assets/img/twitter-og.jpg" />
+
+		<!-- =================================== -->
+		<!-- 			  FAVICON 				 -->
+		<!-- =================================== -->
+		
+		<link rel="icon" href="{% static 'images/favicon.png' %}" />
+		<link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+		{% block logo %}{% endblock logo %}
+
+		<style>
+			.paypal{
+				cursor: pointer;
+				width: 50px;
+				height: 50px;
+			}
+			.Qr{
+				width:141px;
+				height: 200px;
+			}
+		</style>
+
+	</head>
+
+	<body itemscope itemtype="http://schema.org/WebSite">
+		
+		<!-- ===== HEADER ===== -->
+		<header class="header absolute" itemscope itemtype="http://schema.org/Organization">
+			<div class="container">
+			
+				<!-- ===== LOGO ===== -->
+				<h1 class="logo"><a href="/"><img itemprop="logo" src="{% static 'images/logo.png' %}" style="" alt="logo" title="logo" /></a></h1>
+				
+				<!-- ===== NAVIGATION ===== -->
+				<nav class="navigation">
+					<!-- ===== MENU ===== -->
+					<ul class="menu">
+						<li class="menuitem {% block home %}active{% endblock home %}"><a href="/">Home</a></li>
+						{% if user.is_authenticated %}
+						<li class="menuitem"><a href="/admin/main/home/add/?_to_field=id&_popup=1" target="_popup">Add</a></li>
+						{% endif %}
+						{% comment %} <li class="menuitem {% block podcasts %}{% endblock podcasts %}"><a href="/podcasts">Podcasts</a></li> {% endcomment %}
+						<li class="menuitem dropdown {% block link %}{% endblock link %}">
+							<a href="#">Links</a>
+							<ul class="droplist">
+								<li class="droplist-item"><a href="/terms-and-conditions">Terms & Conditions</a></li>
+								<li class="droplist-item"><a href="/privacy-policy">Privacy Policy</a></li>
+							</ul>
+						</li>
+						<li class="menuitem {% block about %}{% endblock about %}"><a href="/about-us">About Us</a></li>
+						<li class="menuitem {% block contact %}{% endblock contact %}"><a href="/contact">Contact</a></li>
+					</ul>
+					<!-- ===== HAMBURGUER ICON ===== -->
+					<a href="#" class="btn-hamburguer-menu"><i class="fa fa-bars"></i></a>
+				</nav>
+				
+			</div>
+		</header>
+
+		{% block body-out %}{% endblock body-out %}
+
+		<!-- ===== MAIN ===== -->
+		<main id="main" class="main">
+		
+			{% block body %}{% endblock body %}
+
+			{% block donation %}
+			<!-- ===== DONATE ===== -->
+			<section id="donate" class="section-highlight text-center">
+				<div class="container">
+					
+					<!-- ===== SECTION TITLE ===== -->
+					<h2 class="title-default">We need your help</h2>
+					<p class="section-description">Help us support the show! For More Exciting and New Release. <br />  Be the Family by supporting With Few dollars or currency.</p>
+					
+					{% comment %} Models {% endcomment %}
+
+						<!-- Button trigger modal -->
+						{% comment %} <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+							Launch demo modal
+						</button> {% endcomment %}
+						
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+								{% comment %} <h3 class="podcast-hero-title"  id="exampleModalLabel">Title</h3> {% endcomment %}
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+								</div>
+
+								<div class="modal-body">
+									<h2 class="model-title title-default ">We need your help</h2> 
+
+								<img src="/static/images/paypal.png" class="paypal" alt="PayPal"/>
+								<div>
+
+								{% if payment %}
+								{% for pay in payment %}
+								
+								
+								{% if pay.paypal %}
+									<!-- <img src="" alt="Qr"/> -->
+									<h4><a href="#">{{pay.paypal}}</a></h4>
+									{%else%}
+									<h4><a href="#">comming soon....</a></h4>
+								{% endif %}
+
+								</div>
+
+								<img src="/static/images/paytm.png" class="paypal" alt="paytm"/>
+								<div>
+								{% if pay.qr %}
+									<img src="{{pay.qr.url}}" class="Qr" alt="Qr"/>
+									{%else%}
+									<h4><a href="#">comming soon....</a></h4>
+								{% endif %}
+								</div><br>
+
+								<img src="/static/images/upi.png" class="paypal" alt="paytm"/>
+								<div>
+								{% if pay.upi %}
+									<h4><a href="#">{{pay.upi}}</a></h4>
+									{%else%}
+									<h4><a href="#">comming soon....</a></h4>
+								{% endif %}
+
+								
+								{% endfor %}
+								
+								{% endif %}
+
+								</div>
+								</div>
+								<div class="modal-footer">
+								<button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+								{% comment %} <button type="button" class="btn btn-primary">Save changes</button> {% endcomment %}
+								</div>
+
+
+
+							</div>
+							</div>
+						</div>
+
+
+
+					<!-- ===== DONATE VALUES ===== -->
+					<div class="row mb-50">
+						
+						<div class="col-lg-3 col-sm-6 mb-20">
+							<a href="#" class="btn btn-default btn-round btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">Rs 200/-</a>
+						</div>
+						
+						<div class="col-lg-3 col-sm-6 mb-20">
+							<a href="#" class="btn btn-default btn-round btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">Rs 750/-</a>
+						</div>
+						
+						<div class="col-lg-3 col-sm-6 mb-20">
+							<a href="#" class="btn btn-default btn-round btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">Rs 2000/-</a>
+						</div>
+						
+						<div class="col-lg-3 col-sm-6 mb-20">
+							<a href="#" class="btn btn-default btn-round btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">Custom</a>
+						</div>
+						
+					</div>
+					
+				</div>
+			</section>
+
+			{% endblock donation %}
+
+		</main>	
+		
+		<!-- ===== FOOTER ===== -->
+		<footer class="footer">
+			
+			<!-- ===== FOOTER CONTENT INFORMATION ===== -->
+			<section class="section-positive">
+				<div class="container">
+					
+					<div class="row mt-70 mb-30">
+						
+						<!-- ===== SITEMAP ===== -->
+						<div class="col-sm-3 mb-40">
+							<h2 class="title-separator white">Sitemap</h2>
+							<ul class="footer-list">
+								<li><a href="/">Home</a></li>
+								{% if user.is_authenticated %}
+								<li><a target="_popup" href="/admin/main/home/add/?_to_field=id&_popup=0">Add</a></li>
+								{% endif %}
+								{% comment %} <li><a href="/podcasts">Podcasts</a></li>
+								<li><a href="single-page">Pages</a></li> {% endcomment %}
+								<li><a href="/privacy-policy">Privacy Policy</a></li>
+								<li><a href="/terms-and-conditions">Terms & Conditions</a></li>
+								<li><a href="/about-us">About Us</a></li>
+								{% comment %} <li><a href="/contact">Contact</a></li> {% endcomment %}
+							</ul>
+						</div>
+						
+						<!-- ===== PODCASTS EPISODES ===== -->
+						<div class="col-sm-3 mb-40">
+							<h2 class="title-separator white">Lastest Episodes</h2>
+							
+							{% comment %} <ul class="footer-complement">
+
+							{% if Latest_ep %}
+							{% for i in Latest_ep %}
+								<li>
+									<a href="//podcasts/{{i.id}}-{{i.name|slugify}}">{{i.name}}</a>
+									<span>{{i.date|date:'F j,Y'}}</span>
+								</li>
+								<li>
+									<a href="/podcast-soundcloud.html">#07 - Podcast embed from SoundCloud</a>
+									<span>December 21, 2015</span>
+							{% endfor %}
+							{% endif %}
+							<li><a href="/admin/main/latest_episode/1/change/?_to_field=id&_popup=1" target="_blank">Set Latest Episode</a></li>
+							</ul> {% endcomment %}
+
+							<ul class="footer-complement">
+								{% if Latest_ep %}
+								{% for i in Latest_ep %}
+								<li>
+									<a href="/podcasts/{{i.Episode.id}}-{{i.Episode.name|slugify}}">{{i.Episode.name}}</a>
+									<p><span>{{i.Episode.date|date:'F j,Y'}}</span>
+									{% if user.is_authenticated %} 
+									<a href="/admin/main/latest_episode/{{i.id}}/change/?_to_field=id&_popup=1" target="_blank">Edit</a></p>
+									{% endif %}
+								</li>
+								{% comment %} <li>
+									<a href="/podcast-soundcloud.html">#07 - Podcast embed from SoundCloud</a>
+									<span>December 21, 2015</span>
+								</li>  {% endcomment %}
+								{% endfor %}
+								{% endif %}
+								{% comment %} <li>
+									<a href="/podcast-soundcloud.html">#07 - Podcast embed from SoundCloud</a>
+									<span>December 21, 2015</span>
+								</li>  {% endcomment %}
+							</ul>
+						</div>
+						
+						<!-- ===== PODCASTS EPISODES ===== -->
+						<div class="col-sm-3 mb-40">
+							<h2 class="title-separator white">Who is helping?</h2>
+							<ul class="footer-complement">
+								{% if donation %}		                                                                                                                                                                     
+								{% for i in donation %}
+								<li>
+									<a href="#">@{{i.name}}</a>
+									<span>Donation - {{i.currency}} {{i.amount}}</span>
+									{% if user.is_authenticated %} 
+									<a href="/admin/main/donation/{{i.id}}/change/?_to_field=id&_popup=1" target="_blank">Edit</a></p>
+									{% endif %}
+								</li>
+								{% endfor %}
+								{% endif %}
+							</ul>
+						</div>
+						
+						<!-- ===== SOCIAL CONNECTION ===== -->
+						<div class="col-sm-3 mb-40">
+							<h2 class="title-separator white">We are social</h2>
+							<ul class="social-list">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								{% comment %} <li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li> {% endcomment %}
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-instagram"></i></a></li>
+								{% comment %} <li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li> {% endcomment %}
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-soundcloud"></i></a></li>
+								{% comment %} <li class="social-item"><a href="#" target="_blank"><i class="fa fa-pinterest"></i></a></li> {% endcomment %}
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-spotify"></i></a></li>
+							</ul>
+						</div>
+						
+					</div>
+					
+				</div>
+			</section>
+			
+			<!-- ===== FOOTER INFORMATION ===== -->
+			<section class="footer-credits">
+				<div class="container">
+					
+					<div class="row">
+						
+						<!-- ===== CREDIT LOGO ===== -->
+						<div class="col-sm-6 footer-logo">
+							<h2><a href="/"><img src="{% static 'images/logo.png' %}" alt="Soudcast" title="Soundcast" /></a></h2>
+						</div>
+						
+						<!-- ===== CREDIT LOGO ===== -->
+						<div class="col-sm-6 text-right">
+							Sid Muxical - 2022. All rights reserved. | <a href="/login">Admin</a>
+						</div>
+						
+					</div>
+					
+				</div>
+			</section>
+			
+		</footer>
+		
+		<!-- =================================== -->
+		<!-- 			  SCRIPTS 				 -->
+		<!-- =================================== -->
+		
+		<!-- JQUERY -->
+		<script src="{% static 'js/jquery-1.11.min.js' %}"></script>
+		
+		<!-- BOOTSTRAP JS -->
+		<script src="{% static 'js/bootstrap.min.js' %}"></script>
+		
+		<!-- MEDIA ELEMENT -->
+		<script src="{% static 'js/mediaelement-and-player.min.js' %}"></script>
+		
+		<!-- MAGNIFIC POPUP -->
+		<script src="{% static 'js/magnific-popup.min.js' %}"></script>
+		
+		<!-- FORM VALIDATE -->
+		<script src="{% static 'js/validate.min.js' %}"></script>
+		
+		<!-- PLACEHOLDER FOR IE -->
+		<script src="{% static 'js/placeholder.min.js' %}"></script>
+		
+		<!-- THEME JS -->
+		<script src="{% static 'js/main.js' %}"></script>
+
+	</body>
+
+</html>

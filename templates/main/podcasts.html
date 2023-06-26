@@ -1,0 +1,249 @@
+{% extends 'index.html' %}
+
+
+{% block title %}
+{% if data.name %}
+{{data.name}}
+{% else %}
+Podcasts
+{% endif %}
+{% endblock title %}
+
+{% comment %} {% block home %}{% endblock home %}
+{% block podcasts %}active{% endblock podcasts %} {% endcomment %}
+
+{% block body-out %}
+
+{% load static %}
+
+
+{% if data %}
+
+{% for i in data %}
+
+<!-- ===== LASTEST PODCAST (HERO) ===== -->
+<section class="podcast-hero" style="background-image: url({{i.image.url}})">
+	<div class="podcast-hero-inner">
+
+	
+		<!-- ===== PODCAST INFO ===== -->
+		<div class="container">
+			<div class="podcast-hero-content">
+				<span class="podcast-hero-date">{{i.date|date:'F j,Y'}}</span>
+				<h2 class="podcast-hero-title"><a href="/podcasts/{{i.id}}-{{i.name|slugify}}">{{i.name}}</a></h2>
+				<ul class="podcast-hero-meta">
+					<li class="item"><a href="/podcasts/{{i.id}}-{{i.name|slugify}}" class="podcast-hero-tag" rel="tag">{{i.tag}}</a></li>
+					<li class="item"><i class="fa fa-clock-o"></i> {{i.Total_min}} mins.</li>
+					<li class="item"><a href="{{i.video_link}}" target="_blank" class="podcast-hero-download"><i class="fa fa-download"></i> Play Now</a></li>
+					{% if user.is_authenticated %}
+						<li class="item"><a href="/admin/main/home/{{id}}/change/?_to_field=id&_popup=1" target="_blank" class="podcast-tag" > Edit </a></li>
+					{% endif %}
+				</ul>
+			</div>
+		</div>
+
+		
+		
+		<!-- ===== PODCAST PLAYER ===== -->
+		<div class="podcast-hero-player-content">
+			<div class="container">
+				<!-- ===== CUSTOM PLAYER ===== -->
+				<audio src="{{i.audio.url}}"></audio>
+			</div>
+		</div>
+		
+
+	</div>
+</section>
+
+{% endfor %}
+
+{% else %}
+
+<section class="podcast-hero" style="background-image: url({% static 'images/bg.jpg' %}); height:60vh">
+	<div class="podcast-hero-inner">
+
+		<div class="container">
+			<div class="podcast-hero-content">
+				<h2 class="podcast-hero-title"><a href="/">No Result Found!!!</a></h2>
+			</div>
+		</div>
+
+
+	</div>
+</section>
+
+{% endif %}
+
+
+	
+	<!-- ===== PODCAST LIST ===== -->
+	<section id="#episodes" class="section-positive">
+		<div class="container">
+			
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Another Episodes</h2>
+
+			
+			
+			<div class="row">
+			
+				<!-- ===== PODCAST CARD FULL ===== -->
+				{% comment %} <div class="col-sm-12 mb-40">
+					<div class="podcast-card full">
+						<figure class="podcast-image"><a href="podcast-soundcloud.html"><img src="assets/img/cards/podcast-full-thumb.jpg" alt="Seattle" title="Seattle" /></a></figure>
+						<div class="podcast-content">
+							<span class="podcast-date">December 21, 2015</span>
+							<h2 class="podcast-title"><a href="podcast-soundcloud.html">Episode #07 - Podcast embed from SoundCloud</a></h2>
+							<p class="podcast-excerpt"><a href="podcast-soundcloud.html">This is a full card example, porro culpa minus ipsam a accusantium, cupiditate expedita accusamus, perspiciatis magni aliquid cumque facilis rerum eius. Ipsum facilis iste repudiandae ducimus accusamus...</a></p>
+							<ul class="podcast-meta">
+								<li class="item"><a href="#" class="podcast-tag" rel="tag">Lifestyle</a></li>
+								<li class="item"><i class="fa fa-clock-o"></i> 37 mins.</li>
+								<li class="item"><a href="podcast-soundcloud.html" class="podcast-play"><i class="fa fa-play"></i> Play Episode</a></li>
+							</ul>
+						</div>
+					</div>
+				</div> {% endcomment %}
+
+				{% for x in data1 %}
+				
+				<!-- ===== PODCAST CARD BOXED ===== -->
+				<div class="col-sm-6 mb-40">
+					<div class="podcast-card boxed">
+						<figure class="podcast-image"><a href="/podcasts/{{x.id}}-{{x.name|slugify}}"><img src="{{x.image.url}}" alt="{{x.name}}" title="{{i.name}}" /></a></figure>
+						<div class="podcast-content">
+							<span class="podcast-date">{{x.date|date:'F j,Y'}}</span>
+							<h2 class="podcast-title"><a href="/podcasts/{{x.id}}-{{x.name|slugify}}">{{x.name}}</a></h2>
+							<p class="podcast-excerpt"><a href="/podcasts/{{x.id}}-{{x.name|slugify}}">{{x.desc}}</a></p>
+							<ul class="podcast-meta">
+								<li class="item"><a href="#" class="podcast-tag" rel="tag">{{x.tag}}</a></li>
+								<li class="item"><i class="fa fa-clock-o"></i> {{x.Total_min}} mins.</li>
+								<li class="item"><a href="{{x.video_link}}" target="_blank" class="podcast-play"><i class="fa fa-play"></i> Play Now</a></li>
+								{% if user.is_authenticated %}
+								<li class="item"><a href="/admin/main/home/{{x.id}}/change/?_to_field=id&_popup=1" target="_blank" class="podcast-tag" > Edit </a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				{% endfor %}
+				
+				<!-- ===== PAGINATION ===== -->
+				<div class="col-sm-12 text-center mb-50">
+					<ol class="pagination">
+					{% if data1.previous_page_number >= 1 %}
+						<li><a href="?page={{data1.previous_page_number}}"><i class="fa fa-angle-left"></i></a></li>
+					{% endif %}
+						<li><a href="#">{{data1.number}}</a></li>
+					{% if data1.next_page_number %}
+						<li><a href="?page={{data1.next_page_number}}"><i class="fa fa-angle-right"></i></a></li>
+					{% endif %}
+					</ol>
+				</div>
+				
+			</div>
+			
+		</div>
+	</section><center><hr style="max-width:60%;"></center>
+	
+	<!-- ===== ABOUT US ===== -->
+	{% comment %} <section id="about-us" class="section-negative">
+		<div class="container">
+			
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default text-center">Behind the mic...</h2>
+			
+			<div class="row mb-30">
+				
+				<!-- ===== TEAM CARD ===== -->
+				<div class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-12 mb-40">
+					<div class="team-card">
+						<figure class="team-card-image"><img src="assets/img/team/team-1.jpg" alt="John Doe" title="John Doe" /></figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">John Doe</h2>
+							<p class="team-card-job">Main Caster / Web Developer</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora, libero in fugiat, quisquam molestiae.</p>
+							<ul class="team-card-social">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-soundcloud"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-link"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<!-- ===== TEAM CARD ===== -->
+				<div class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-12 mb-40">
+					<div class="team-card">
+						<figure class="team-card-image"><img src="assets/img/team/team-2.jpg" alt="Jana Doe" title="Jana Doe" /></figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">Jana Doe</h2>
+							<p class="team-card-job">Main Caster / Designer</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora.</p>
+							<ul class="team-card-social">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-link"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				<!-- ===== TEAM CARD ===== -->
+				<div class="col-lg-4 col-lg-offset-0 col-md-8 col-md-offset-2 col-sm-12 mb-40">
+					<div class="team-card">
+						<figure class="team-card-image"><img src="assets/img/team/team-3.jpg" alt="Joe Blow" title="Joe Blow" /></figure>
+						<div class="team-card-content">
+							<h2 class="team-card-title">Joe Blow</h2>
+							<p class="team-card-job">Supporter / Actor</p>
+							<p class="team-card-description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat itaque optio minus perferendis tempora, libero in fugiat, quisquam molestiae.</p>
+							<ul class="team-card-social">
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-linkedin"></i></a></li>
+								<li class="social-item"><a href="#" target="_blank"><i class="fa fa-link"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</section> {% endcomment %}
+	{% endblock body-out %}
+	{% block body %}
+
+	<!-- ===== NEWSLETTER ===== -->
+	<section class="section-positive text-center">
+		<div class="container">
+			
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Never miss an episode</h2>
+			<p class="section-description">Form with MailChimp ready, just change the action! Lorem ipsum dolor sit amet, consectetur adipisicing elit. <br />  Vel modi rem laudantium, alias minus temporibus nihil reiciendis vero.</p>
+			
+			<!-- ===== FORM NEWSLETTER ===== -->
+			<form action="//myaccount.us10.list-manage.com/subscribe/post?u=599a4d2b746f06b367c5f8085&amp;id=f429f2b2f5" method="POST" target="_blank" class="form-newsletter validate">
+				<fieldset class="row">
+					<div class="col-md-9 nopadding">
+						<input type="email" name="EMAIL" class="form-control form-negative" id="email-newsletter" placeholder="Your email" required />
+					</div>
+					<div class="col-md-3 nopadding">
+						<button class="btn btn-success btn-lg btn-block" type="submit"><i class="fa fa-paper-plane"></i></button>
+					</div>
+				</fieldset>
+			</form>
+
+		</div>
+	</section>
+	
+	
+
+
+{% endblock body %}

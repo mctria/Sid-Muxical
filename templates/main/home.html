@@ -1,0 +1,104 @@
+{% extends 'index.html' %}
+
+{% block body-out %}
+		
+{% load static %}
+
+{% for i in title %}
+<!-- ===== LASTEST PODCAST (HERO) ===== -->
+<section class="podcast-hero" style="background-image: url({{i.Image.url}})">
+	<div class="podcast-hero-inner">
+	
+		<!-- ===== PODCAST INFO ===== -->
+		<div class="container">
+				<div class="podcast-hero-content">
+				{% comment %} <span class="podcast-hero-date">December 22, 2015</span> {% endcomment %}
+				
+				<h2 class="podcast-hero-title"><a href="/">{{i.Title}}</a></h2><br>
+				<div style="margin-right:30%;position:relative;">
+				<p>“{{i.quots}}.”</p>
+				{% if i.author_name %}
+					<h6>― {{i.author_name}}</h6>
+				{% endif %}
+				</div>
+				{% endfor %}
+				<a href="#main"  style="transition:1s"><input class="btn btn-success" value='See More' type="submit"  style="padding:7px 60px" /></a>
+				{% if user.is_authenticated %}
+				<br>
+				<br>
+					<a href="/admin/main/home_edit/1/change/?_to_field=id&_popup=1"  style="transition:1s"><input class="btn btn-success" value='Change Bg image & Title' type="submit"  style="padding:7px 60px" /></a>
+					<br><br>
+					<a href="/signout" ><input class="btn btn-success" value='SignOut' type="submit"  style="padding:7px 60px" /></a>
+				{% endif %}
+				{% comment %} <ul class="podcast-hero-meta">
+					<li class="item"><a href="#" class="podcast-hero-tag" rel="tag">Lifestyle</a></li>
+					<li class="item"><i class="fa fa-clock-o"></i> 45 mins.</li>
+					<li class="item"><a href="#" class="podcast-hero-download"><i class="fa fa-download"></i> Download</a></li>
+				</ul> {% endcomment %}
+			</div>
+		</div>
+		
+		<!-- ===== PODCAST PLAYER ===== -->
+		{% comment %} <div class="podcast-hero-player-content">
+			<div class="container">
+				<!-- ===== CUSTOM PLAYER ===== -->
+				<audio src="assets/audio/emotional.mp3"></audio>
+			</div>
+		</div> {% endcomment %}
+		
+	</div>
+</section>
+
+{% endblock body-out %}
+
+{% block body %}
+
+{% load static %}
+	
+	<!-- ===== PODCAST LIST ===== -->
+	<section id="#episodes" class="section-positive">
+		<div class="container">
+			
+			<!-- ===== SECTION TITLE ===== -->
+			<h2 class="title-default">Episodes</h2>
+			
+			<div class="row">
+
+				{% for i in data %}
+			
+				<!-- ===== PODCAST CARD FULL ===== -->
+				<div class="col-sm-12 mb-40">
+					<div class="podcast-card full">
+						<figure class="podcast-image"><a href="/podcasts/{{i.id}}-{{i.name|slugify}}"><img src="{{i.image.url}}" alt="{{i.name}}" title="{{i.name}}" /></a></figure>
+						<div class="podcast-content">
+							<span class="podcast-date">{{i.date|date:'F j,Y'}}</span>
+							<h2 class="podcast-title"><a href="/podcasts/{{i.id}}-{{i.name|slugify}}">{{i.name}}</a></h2>
+							<p class="podcast-excerpt"><a href="/podcasts/{{i.id}}-{{i.name|slugify}}">{{i.desc}}</a></p>
+							<ul class="podcast-meta">
+								<li class="item"><a href="#" class="podcast-tag" rel="tag">{{i.tag}}</a></li>
+								<li class="item"><i class="fa fa-clock-o"></i> {{i.Total_min}} mins.</li>
+								<li class="item"><a href="{{i.video_link}}" target="_blank" class="podcast-play"><i class="fa fa-play"></i> Play Now</a></li>
+								{% if user.is_authenticated %}
+									<li class="item"><a href="/admin/main/home/{{i.id}}/change/?_to_field=id&_popup=1" target="_blank" class="podcast-tag" > Edit </a></li>
+								{% endif %}
+							</ul>
+						</div>
+					</div>
+				</div>
+				
+				{% endfor %}
+
+				<!-- ===== CHECK MORE ===== -->
+				<div class="col-sm-12 mb-50">
+					<a href="/" class="btn btn-primary btn-block btn-lg">View more episodes</a>
+				</div>
+				
+				
+				
+			</div>
+			
+		</div>
+	</section>
+	
+		
+{% endblock body %}
